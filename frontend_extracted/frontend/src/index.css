@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Glassmorphism Panel styles */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* High-tech Dark Mode Map Styling */
+.dark-leaflet-map .leaflet-container {
+  background: #0B0F19 !important;
+}
+
+.dark-leaflet-map .leaflet-tile {
+  filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%);
+}
+
+.dark-leaflet-map .leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: #111827 !important;
+}
+
+.dark-leaflet-map .leaflet-bar a {
+  background: #111827 !important;
+  color: #9CA3AF !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-leaflet-map .leaflet-bar a:hover {
+  background: #1F2937 !important;
+  color: #F3F4F6 !important;
+}
+
+.dark-leaflet-map .leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  color: #E5E7EB !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 8px !important;
+}
+
+.dark-leaflet-map .leaflet-popup-tip {
+  background: #111827 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Glowing Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.8);
+  }
+}
+
+.glow-purple {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
