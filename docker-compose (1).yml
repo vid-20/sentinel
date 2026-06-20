@@ -35,8 +35,6 @@ services:
       - MAPMYINDIA_CLIENT_SECRET=${MAPMYINDIA_CLIENT_SECRET}
     volumes:
       - ./backend:/app
-      - ./Astram event data_anonymized - Astram event data_anonymizedb40ac87 (1).csv:/app/Astram event data_anonymized - Astram event data_anonymizedb40ac87 (1).csv
-      - ./jan to may police violation_anonymized791b166.csv:/app/jan to may police violation_anonymized791b166.csv
     depends_on:
       db:
         condition: service_healthy
