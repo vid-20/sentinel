@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3-alpine
+    container_name: sentinel-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sentinel
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sentinel-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=sentinel
+      - MAPMYINDIA_CLIENT_ID=${MAPMYINDIA_CLIENT_ID}
+      - MAPMYINDIA_CLIENT_SECRET=${MAPMYINDIA_CLIENT_SECRET}
+    volumes:
+      - ./backend:/app
+      - ./Astram event data_anonymized - Astram event data_anonymizedb40ac87 (1).csv:/app/Astram event data_anonymized - Astram event data_anonymizedb40ac87 (1).csv
+      - ./jan to may police violation_anonymized791b166.csv:/app/jan to may police violation_anonymized791b166.csv
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sentinel-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
