@@ -61,6 +61,10 @@ MAPMYINDIA_CLIENT_SECRET=your_client_secret_here
 ## Setup & Running the Platform
 
 Ensure [Docker](https://www.docker.com/) is installed and running.
+Database Setup Note:
+Since the preloaded database file is large, it is provided in the Extra Files upload on the submission portal as sentinel_db.zip.
+
+Before starting the servers, extract sentinel.db from the zip and place it inside the backend_extracted/backend/ folder.
 
 ### 1. Build and Start Services
 From the root workspace directory, run:
